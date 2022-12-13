@@ -20,3 +20,6 @@
 
 # Other
 notebooks.db
+
+#TestData
+tests/testData

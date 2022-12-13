@@ -1,14 +1,19 @@
 package utils
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
+	"unicode"
 )
 
 /**
  * Parses single string into uint64
  */
 func ParseUInt64(arg string) (uint64, error) {
+	if hasLetter(arg) {
+		return 0, errors.New("arg contains a letter value")
+	}
 	noteId, err := strconv.ParseInt(arg, 10, 64)
 	usNoteId := uint64(noteId)
 	if err != nil {
@@ -33,4 +38,13 @@ func ParseUInt64Slice(args []string) ([]uint64, error) {
 		}
 	}
 	return usNoteIds, err
+}
+
+func hasLetter(str string) bool {
+	for _, char := range str {
+		if unicode.IsLetter(char) {
+			return true
+		}
+	}
+	return false
 }

@@ -32,3 +32,9 @@ func TestParseUInt64Slice(t *testing.T) {
 	}
 
 }
+
+func FuzzTestParseUInt64(f *testing.F) {
+	f.Fuzz(func(t *testing.T, arg string) {
+		utils.ParseUInt64(arg)
+	})
+}
